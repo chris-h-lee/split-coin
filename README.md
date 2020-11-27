@@ -2,6 +2,8 @@
 # Split-Coin #
 # Creators: Hisham Assana, Christopher Lee, Nikhil Mahajan, Nasrat Alam #
 
+**Original repository was private so all files have been moved here for viewing purposes**
+
 ## Summary ##
 
 https://split-coin.herokuapp.com/
