@@ -1,0 +1,16 @@
+language: python
+python:
+- '3.8'
+install:
+- pip install -r requirements-travis.txt
+- pip install django-allauth
+script:
+- python manage.py test
+deploy:
+  skip_cleanup: true
+  provider: heroku
+  api_key:
+    secure: strOChIMYhFz6USbAfnNV9fayFNBT7zMNEuyl3yXb8LJ6m8RyAb1G1a8c7V6uXE5aJCixT3Sip1riwN/+nrvnJPECO6x+oGPbZjFgjuZ0AgXpXHOVpyuO5FPc18RbVifTZjL64qlNSIBKEWHfNhw0jFBD90Ez6ir8GATUd66hnxpK6Pm5B32rQyITQ4Jx9K+exubJX21OeIo53W/YmmqFnRSjGFQtITbgigzXezgCbzfVvr3ZViAbEl5Rorlmslnq16LuTzu8oD/Eqg1BuwWcJpCoM01bjCrYYgN77+kOd8tdBP3KoxSErqHN7FEcN8wbWG7EoWna1UKIoW0INxHqQSrEs+TKWcWb/3AaLNAbUlHBKEOfwEG/fu+qZ4NJs763Mgfaz8P7HSt8uGQydsUOe+D4OL9AFIdceoaFI671QFqCAFub9vnT+aVScUw9OxxXl6IR+jxKg50oOHR1idV1Bn0MWAbW0IrfoGif4swf0kodNXnnvs8egeLi5CglDGCuMz/a20rYuX7XIhPeN6P0vpGg6JEHMgFXcAgnlCF8MFE6mseHUyATp7/roFrBiFMjmbr8b5vK+FREnQNlsOIyVOmV4k/zqB4CHExHwp2keje1WghVPVUTk1+qNTMzAPj6pwWangY8iQtgjExeKnTDNz8O7LZSIX1I5xj9rSVVO0=
+  app: split-coin
+  on:
+    repo: uva-cs3240-f20/project-1-39

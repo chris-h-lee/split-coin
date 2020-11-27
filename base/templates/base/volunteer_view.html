@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Registration</title>
+    <div class="jumbotron">
+      <h1><p style="font-size:50px;">SPLIT COIN</p></h1>
+    </div>
+  </head>
+  <body>
+
+<!-- CSS for the Navbar and stuff -->
+<style>
+  .topnav {
+    background-color: #2B7A78;
+    overflow: hidden;
+  }
+  
+  html,body {
+    background-color: #3AAFA9;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #17252A;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Add a color to the hovered link */
+  .topnav a:hover {
+    background-color: #DEF2F1;
+    color: #17252A;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    background-color: #DEF2F1;
+    color: #17252A;
+  }
+  
+  .jumbotron{
+    margin: auto;
+    font-size: 50px;
+    width: 50%;
+    border: 0px solid #73AD21;
+    color: #17252A;
+    text-align: center;
+  }
+  
+  .footer{
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      color:rgb(252, 248, 2);
+      text-align: center;
+  }
+  
+  .subheader{
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  border: 0px solid
+}
+
+  .eventTemplate{
+  margin: auto;
+  width: 60%;
+  border: 2px solid;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  }
+  
+  .eventElement1{
+  border-right: 2px solid;
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  }
+  
+  .eventElement3{
+  border-bottom: 2px solid;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+  }
+  
+  .eventElement4{
+  text-align: left;
+  }
+  
+  a:link {
+    color: #17252A;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: #17252A;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #17252A;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:active {
+    color: #17252A;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  .subheader{
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  border: 0px solid
+}
+
+  .tab { text-indent:30px }
+  
+  img {border-radius: 0px 25px 25px 0px;}
+  h1 {color: white;}
+  p {color: white; font-size: 20px;}
+  
+  </style>
+
+<!-- The (hopefully) functioning Navbar -->
+<div class="topnav">
+  <a href="/home">Home</a>
+  <a href="/donate">Donate</a>
+  <a class="active" href="/volunteer">Volunteer</a>
+  <a href="/schedule">Schedule</a>
+  <a href="/profile">Profile</a>
+  <a href="/leaderboard">Leaderboard</a>
+  <a href="/about">About</a>
+    {% if user.profile.is_volunteer == False %}
+    <a href="/home/create">Create</a>
+    <a href="/submitted-events">Submitted Events</a>
+    {% endif %}
+  <a style="float:right" href="/accounts/logout">Logout</a>
+</div>
+
+<h1 class="subheader"> All Volunteer Offers </h1>
+<br>
+
+<div align="center">
+{% block content %}
+{% for event in event_list %}
+<div class="eventTemplate">
+  <div class="eventElement1">
+    <div class="eventElement3" style="font-size: 30px;">
+       
+         <a class="title" style="color: white" href="{% url 'base:TaskView' event.id %}"> {{ event.Name }} </a>
+       <div style="color: white">
+          {{ event.Date }} at {{event.Time }}
+       </div>
+    </div>
+
+    <div class="eventElement4">
+      <p class="tab" style="color: white"> {{ event.Description }} </p>
+    </div>
+
+    </div>
+
+  <div class="eventElement2" style="display:flex;">
+    <a class="picture" href="{% url 'base:TaskView' event.id %}" style="display:flex;">  <img src="https://storage.needpix.com/rsynced_images/volunteer-1888823_1280.png" alt="Cartoon Hands" width="200" height="200">  </a>
+  </div>
+</div>
+<br>
+  <br>
+{% empty %}
+    <p>There are no offers yet.</p>
+{% endfor %}
+{% endblock %}
+</div>
+<br>
+<br>
+<br>
+  <div class="footer">
+    <p> All Rights Reserved © Copyright 2020 Team 1-39 </p>
+    </div>
+
+  </body>
+</html>
+

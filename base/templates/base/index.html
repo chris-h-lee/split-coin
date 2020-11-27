@@ -1,0 +1,130 @@
+{% load socialaccount %}
+<!doctype html>
+<html>
+  <head>
+    <title>Google Registration</title>
+  </head>
+  <body>
+    <style>
+      .topnav {
+        background-color: #2B7A78;
+        overflow: hidden;
+      }
+      
+      html,body {
+        background-color: #3AAFA9;
+      }
+      
+      .topnav a {
+        float: left;
+        color: #17252A;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      
+      /* Add a color to the hovered link */
+      .topnav a:hover {
+        background-color: #DEF2F1;
+        color: #17252A;
+      }
+      
+      /* Add a color to the active/current link */
+      .topnav a.active {
+        background-color: #DEF2F1;
+        color: #17252A;
+      }
+      
+      .jumbotron{
+        margin: auto;
+        font-size: 50px;
+        width: 50%;
+        border: 0px solid #73AD21;
+        color: #17252A;
+        text-align: center;
+      }
+      
+      .footer{
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          background-color: #333;
+          color:rgb(252, 248, 2);
+          text-align: center;
+      }
+      
+      .eventTemplate{
+      margin: auto;
+      width: 50%;
+      border: 2px solid;
+      border-radius: 25px;
+      display: flex;
+      flex-direction: row;
+      }
+      
+      .eventElement1{
+      border-right: 2px solid;
+      flex: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      }
+      
+      .eventElement3{
+      border-bottom: 2px solid;
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 10px;
+      }
+      
+      .eventElement4{
+      text-align: left;
+      }
+      
+      a:link {
+        color:#17252A;
+        background-color: transparent;
+        text-decoration: none;
+      }
+      
+      a:visited {
+        color: #17252A;
+        background-color: transparent;
+        text-decoration: none;
+      }
+      
+      a:hover {
+        color: white;
+        background-color: transparent;
+        text-decoration: none;
+      }
+
+      a:active {
+        color: #17252A;
+        background-color: transparent;
+        text-decoration: underline;
+      }
+      
+      .outline {
+        -webkit-text-stroke: 2px white;
+          font-size: 80px;
+      }
+
+
+      .tab { text-indent:30px }
+      
+      img {border-radius: 0px 25px 25px 0px;}
+      h1 {color: white;}
+      p {color: white; font-size: 20px;}
+      
+      </style>
+  <div style="font-size: 40px; text-align: center;">
+    <h1>Split Coin</h1>
+    <a class="outline" href="{% provider_login_url 'google' %}">Login with Google</a>
+  </div>
+  
+  
+  </body>
+</html>

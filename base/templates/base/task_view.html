@@ -1,0 +1,371 @@
+<!-- from Stripe API used for donations in which they provide the code for developers: https://stripe.com/docs/stripe-js. -->
+<style type="text/css">
+    /**
+     * The CSS shown here will not be introduced in the Quickstart guide, but shows
+     * how you can use CSS to style your Element's container.
+     */
+    .StripeElement {
+      box-sizing: border-box;
+
+      height: 40px;
+
+      padding: 10px 12px;
+
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background-color: white;
+
+      box-shadow: 0 1px 3px 0 #e6ebf1;
+      -webkit-transition: box-shadow 150ms ease;
+      transition: box-shadow 150ms ease;
+    }
+
+    .StripeElement--focus {
+      box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+
+    .StripeElement--invalid {
+      border-color: #fa755a;
+    }
+
+    .StripeElement--webkit-autofill {
+      background-color: #fefde5 !important;
+    }
+</style>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Registration</title>
+    <div class="jumbotron">
+      <h1><p style="font-size:50px;">SPLIT COIN</p></h1>
+    </div>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base/style.css' %}?version=1">
+  </head>
+
+
+  <body>
+
+<!-- CSS for the Navbar and stuff -->
+<style>
+  .topnav {
+    background-color: #2B7A78;
+    overflow: hidden;
+  }
+  
+  html,body {
+    background-color: #3AAFA9;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #17252A;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Add a color to the hovered link */
+  .topnav a:hover {
+    background-color: #DEF2F1;
+    color: #17252A;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    background-color: #DEF2F1;
+    color: #17252A;
+  }
+  
+  .jumbotron{
+    margin: auto;
+    font-size: 50px;
+    width: 50%;
+    border: 0px solid #73AD21;
+    color: #17252A;
+    text-align: center;
+  }
+
+  .subheader{
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  border: 0px solid
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    text-align: center;
+}
+  
+  .eventTemplate{
+  margin: auto;
+  width: 50%;
+  border: 2px solid;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  }
+  
+  .eventElement1{
+  border-right: 2px solid;
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  }
+  
+  .eventElement3{
+  border-bottom: 2px solid;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+  }
+  
+  .VolunteerEventPage
+  {
+    border: 2px solid;
+    font-size: 30px;
+    width: 40%;
+    margin: auto;
+  }
+  .eventElement4{
+  text-align: left;
+  }
+  
+  a:link {
+    color: #17252A;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: #17252A;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #17252A;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:active {
+    color: #17252A;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  .tab { text-indent:30px }
+  
+  img {border-radius: 0px 25px 25px 0px;}
+  h1 {color: white;}
+  p {color: white; font-size: 20px;}
+  
+  </style>
+
+<!-- The (hopefully) functioning Navbar -->
+<div class="topnav">
+    <a href="/home">Home</a>
+    <a href="/donate">Donate</a>
+    <a href="/volunteer">Volunteer</a>
+    <a href="/schedule">Schedule</a>
+    <a href="/profile">Profile</a>
+    <a href="/leaderboard">Leaderboard</a>
+    <a href="/about">About</a>
+    {% if user.profile.is_volunteer == False %}
+    <a href="/home/create">Create</a>
+    <a href="/submitted-events">Submitted Events</a>
+    {% endif %}
+    <a style="float:right" href="/accounts/logout">Logout</a>
+</div>
+<br>
+<h1 class="subheader" align="center"> Do you want to accept this offer? </h1>
+<br>
+
+{% block content %}
+<div class="VolunteerEventPage"  align="center">
+    <strong >{{ event.Name }}</strong>
+    <strong>({{ event.Event }})</strong>
+    <br>
+    <p style="padding-top: 10px; font-size: 30px;">When: {{ event.Date }} at {{ event.Time }}</p>
+    {% if event.Event == "Volunteer" %}
+    <p style="padding: 10px; font-size: 30px;">Duration: {{ event.duration }} minutes</p>
+    {% endif %}
+    <div style="border-top: 2px solid; padding: 10px; font-size: 30px; text-align: left;" class="VolunteerViewDesc">
+    <p> {{ event.Description|linebreaks }}</p>
+    </div>
+</div>
+    {% if event.Event == "Volunteer" %}
+        <form action="{% url 'base:vsuccess' event.pk %}" method="post" id="accept-offer">{% csrf_token %}
+            <div align="center"><button>Accept</button></div>
+        </form>
+    {% endif %}
+    {% if event.Event == "Donation" %}
+        <script src="https://js.stripe.com/v3/"></script>
+        <form action="{% url 'base:transaction' event.pk %}" method="post" id="payment-form">{% csrf_token %}
+
+            <!-- code for donation box instead of slider
+            <br>
+            <br>
+            <div class="form-group" align="center">
+                <label>Amount to donate in USD($)</label>
+                <input type="text" class="form-control" name = "amount">
+                <small class="form-text text-muted">Enter how much you would like to donate up to two decimal places.</small>
+            </div>
+            -->
+            <br>
+            <h2 align="center">Select how much you would like to donate in USD($)</h2>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <br>
+            <div class="main" style="width:90%;">
+                <input type="range" min="0.5" max="100" value="50" id="slider" step="0.25" name="amount">
+                <div id="selector">
+                    <div class="SelectBtn"></div>
+                    <div id="SelectValue"></div>
+                </div>
+                <div id="ProgressBar"></div>
+            </div>
+            <br>
+            <!-- <small class="form-text text-muted">Enter how much you would like to donate.</small> -->
+
+            <!-- for donation slider from tutorial at https://www.youtube.com/watch?v=Ow0QjqmaRtQ&ab_channel=EasyTutorials -->
+            <script>
+                var slider = document.getElementById("slider");
+                var selector = document.getElementById("selector");
+                var SelectValue = document.getElementById("SelectValue");
+                var ProgressBar = document.getElementById("ProgressBar");
+
+                SelectValue.innerHTML = "$" + slider.value;
+
+                slider.oninput = function(){
+                    SelectValue.innerHTML = "$" + this.value;
+                    selector.style.left = this.value + "%";
+                    ProgressBar.style.width = this.value + "%";
+                }
+            </script>
+
+            <br>
+            <!-- From Stripe API -->
+            <div class="form-row">
+                <label for="card-element">
+                Credit or debit card
+              </label>
+              <div id="card-element">
+                <!-- A Stripe Element will be inserted here. -->
+              </div>
+
+              <!-- Used to display form errors. -->
+              <div id="card-errors" role="alert"></div>
+            </div>
+            <div align="center"><button>Submit Payment</button></div>
+            <br>
+        </form>
+        <h3>Note: This donation system does not actually charge a real card; it automatically charges a testing card so as to avoid
+        mischarges. You can enter any credit card information you like, although the expiration date must be in the future. If you prefer,
+        you can use a knowingly faulty credit card number that is in Mastercard or Visa format; the system will automatically charge
+        a test card no matter what credit card number you enter. Alternatively, "4242 4242 4242 4242" with any future expiration date
+            and any CVC works as that is the pseudo-card we are charging. You may refer to <a style="text-decoration: underline; color: #0000FF" href=https://stripe.com/docs/testing>this link</a>
+        for more information about what we are using for donations.</h3>
+    {% endif %}
+{% endblock %}
+
+<br>
+<br>
+<br>
+
+<div class="footer" style="padding-top: 20px; padding-bottom: 20;">
+  <p> All Rights Reserved © Copyright 2020 Team 1-39 </p>
+  </div>
+
+  </body>
+</html>
+
+<!-- from Stripe API: https://stripe.com/docs/stripe-js. -->
+<script>
+    // Create a Stripe client.
+    var stripe = Stripe('pk_test_51Hi3ccIhinpgN0d6Q79Qyavo5iHHJC9mAq0Hg1uPE8jBNXbwAr8PuaSXrlgL4rGULahJWeGzNaEq0XUI2HhCUr4800ADTdVk6G');
+
+    // Create an instance of Elements.
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    var style = {
+      base: {
+        color: '#32325d',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#aab7c4'
+        }
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+      }
+    };
+
+    // Create an instance of the card Element.
+    var card = elements.create('card', {style: style});
+
+    // Add an instance of the card Element into the `card-element` <div>.
+    card.mount('#card-element');
+
+    // Handle real-time validation errors from the card Element.
+    card.on('change', function(event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+    // Handle form submission.
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+          // Inform the user if there was an error.
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          // Send the token to your server.
+          stripeTokenHandler(result.token);
+        }
+      });
+    });
+
+    // Submit the form with the token ID.
+    function stripeTokenHandler(token) {
+      // Insert the token ID into the form so it gets submitted to the server
+      var form = document.getElementById('payment-form');
+      var hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute('type', 'hidden');
+      hiddenInput.setAttribute('name', 'stripeToken');
+      hiddenInput.setAttribute('value', token.id);
+      form.appendChild(hiddenInput);
+
+      // Submit the form
+      form.submit();
+    }
+</script>
+
+

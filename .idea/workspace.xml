@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+<<<<<<< Updated upstream
+    <list default="true" id="168e3f24-935f-4878-9df7-54b4783ceef6" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="168e3f24-935f-4878-9df7-54b4783ceef6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+>>>>>>> Stashed changes
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1iQol5NrWu5S9RpnOgDfHRr67g6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="168e3f24-935f-4878-9df7-54b4783ceef6" name="Default Changelist" comment="" />
+      <created>1600392758827</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600392758827</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="304" y="155" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602958110087">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state x="304" y="155" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.945@0.23.1680.945" timestamp="1602958110087" />
+    <state x="557" y="303" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602208363003">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state x="557" y="303" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.945@0.23.1680.945" timestamp="1602208363003" />
+    <state x="341" y="132" key="SettingsEditor" timestamp="1602957918695">
+      <screen x="0" y="23" width="1680" height="942" />
+    </state>
+    <state x="341" y="132" key="SettingsEditor/0.23.1680.942@0.23.1680.942" timestamp="1602957918695" />
+    <state x="467" y="193" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601850883945">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state x="467" y="193" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1680.945@0.23.1680.945" timestamp="1601850883945" />
+    <state x="505" y="229" width="670" height="676" key="search.everywhere.popup" timestamp="1602222887278">
+      <screen x="0" y="23" width="1680" height="940" />
+    </state>
+    <state x="505" y="229" width="670" height="676" key="search.everywhere.popup/0.23.1680.940@0.23.1680.940" timestamp="1602222887278" />
+  </component>
+</project>
